@@ -1,0 +1,30 @@
+{
+    "version": "0.1.0",
+  	"linux": { "command": "sh", "args": ["-c"] },
+  	"osx": { "command": "sh", "args": ["-c"] },
+  	"windows": { "command": "cmd", "args": ["/C"] },
+	"isShellCommand": true,
+	"showOutput": "always",
+	"suppressTaskName": true,
+    "tasks": [
+        {
+            "taskName": "restore",
+            "suppressTaskName": true,
+            "args": [ "dotnet", "restore"],
+            "isBuildCommand": true,
+            "showOutput": "always"
+        },
+        {
+            "taskName": "build",
+            "args": [ "dotnet", "build", "Dedupe.Core", "Dedupe.Console"],
+            "isBuildCommand": true,
+            "showOutput": "always"
+        },
+        {
+            "taskName": "publish",
+            "args": [ "dotnet", "publish", "Dedupe.Console"],
+            "isBuildCommand": true,
+            "showOutput": "always"
+        }
+    ]
+}
