@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
-    <DebugType>portable</DebugType>
     <AssemblyName>Dedupe.Core</AssemblyName>
     <PackageId>Dedupe.Core</PackageId>
     <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
