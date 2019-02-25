@@ -21,16 +21,19 @@ namespace  Dedupe.CommandLine
 
             if(args.Length == 3)
             {
+                Console.WriteLine($"Type: Source to target");
                 source = args[1];
                 target = args[2];
             }
             else if(args.Length == 2)
             {
+                Console.WriteLine($"Type: Current directory to target");
                 source = Directory.GetCurrentDirectory();
                 target = args[1];
             }
             else
             {
+                Console.WriteLine($"Type: In-place");
                 source = Directory.GetCurrentDirectory();
                 target = source;
             } 
