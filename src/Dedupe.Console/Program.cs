@@ -37,6 +37,17 @@ namespace  Dedupe.CommandLine
                 source = Directory.GetCurrentDirectory();
                 target = source;
             } 
+            // Ensure we are using absolute paths
+            source = Path.GetFullPath(source);
+            target = Path.GetFullPath(target);
+
+            // Ensure paths end with seperator
+            if(!source.EndsWith(Path.DirectorySeparatorChar)) { source += Path.DirectorySeparatorChar; }
+            if(!target.EndsWith(Path.DirectorySeparatorChar)) { target += Path.DirectorySeparatorChar; }
+
+            Console.WriteLine($"Action: {action}");
+            Console.WriteLine($"Source: {source}");
+            Console.WriteLine($"Target: {target}");
 
             if(!Directory.Exists(source) || !Directory.Exists(target))
             {
