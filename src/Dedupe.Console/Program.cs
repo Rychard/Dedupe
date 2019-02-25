@@ -9,8 +9,8 @@ namespace  Dedupe.CommandLine
     {
         public static Int32 Main(string[] args)
         {
-            if(args.Length == 0) 
-            { 
+            if(args.Length == 0)
+            {
                 PrintUsage();
                 return -1;
             }
@@ -36,7 +36,8 @@ namespace  Dedupe.CommandLine
                 Console.WriteLine($"Type: In-place");
                 source = Directory.GetCurrentDirectory();
                 target = source;
-            } 
+            }
+
             // Ensure we are using absolute paths
             source = Path.GetFullPath(source);
             target = Path.GetFullPath(target);
@@ -76,11 +77,11 @@ namespace  Dedupe.CommandLine
             Folder folderSource = new Folder(source);
             Folder folderTarget = new Folder(target);
             Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();            
+            stopwatch.Start();
 
             Deduplicator dedupe = new Deduplicator(folderSource);
             dedupe.CompressAsync(folderTarget).Wait();
-            
+
             Console.WriteLine($"Time Taken: {stopwatch.ElapsedMilliseconds} milliseconds");
             return 0;
         }
@@ -90,7 +91,7 @@ namespace  Dedupe.CommandLine
             Folder folderSource = new Folder(source);
             Folder folderTarget = new Folder(target);
             Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();  
+            stopwatch.Start();
 
             Deduplicator dedupe = new Deduplicator(folderSource);
             dedupe.ExpandAsync().Wait();

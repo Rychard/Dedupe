@@ -4,7 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 
 namespace Dedupe.Core
-{    
+{
     public class Folder : IFolder
     {
         DirectoryInfo _directoryInfo;
@@ -40,7 +40,7 @@ namespace Dedupe.Core
                 yield return new Folder(folderInfo);
             }
         }
- 
+
         public Task<Boolean> FolderExistsAsync(String folderName)
         {
             String path = Path.Combine(_directoryInfo.FullName, folderName);

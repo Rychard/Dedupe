@@ -1,12 +1,12 @@
 # Dedupe
 
-.NET Core project allowing deduplication (and subsequent reduplication) of files 
-in a directory, which (in some cases) may improve compression ratio and reduce 
+.NET Core project allowing deduplication (and subsequent reduplication) of files
+in a directory, which (in some cases) may improve compression ratio and reduce
 compression times.
 
 # Build
 
-I've still not gotten the hang of things in the .NET Core world, but I believe 
+I've still not gotten the hang of things in the .NET Core world, but I believe
 it's a fairly vanilla build process, as far as things go.
 
 You'll need to build the `Dedupe.Core` project before building `Dedupe.Console`.
@@ -41,6 +41,6 @@ Expand the specified directory in-place:
 Dedupe.Console expand <source-directory>
 ```
 
-# License 
+# License
 
 Licensed under the [MIT License](./LICENSE.md)

@@ -24,7 +24,7 @@ namespace Dedupe.Core
         {
             var files = _source.EnumerateFiles();
 
-            var result = Parallel.ForEach(files, async (file, state, noIdeaWhatThisIs) => 
+            var result = Parallel.ForEach(files, async (file, state, noIdeaWhatThisIs) =>
             {
                 await CacheHash(file);
             });
@@ -58,7 +58,7 @@ namespace Dedupe.Core
         {
             await ScanAsync();
 
-            Boolean inPlace = (_source.FolderPath == destination.FolderPath); 
+            Boolean inPlace = (_source.FolderPath == destination.FolderPath);
 
             foreach(var fileItem in _fileHashes)
             {
@@ -76,7 +76,7 @@ namespace Dedupe.Core
                     String relativePath = files[0];
                     String sourcePath = Path.Combine(_source.FolderPath, relativePath);
                     String destinationPath = Path.Combine(destination.FolderPath, relativePath);
-                    
+
                     if(!System.IO.File.Exists(sourcePath))
                     {
                         Console.WriteLine($"[ERROR] File not found: {relativePath}");
@@ -85,7 +85,7 @@ namespace Dedupe.Core
                     var directoryToEnsure = Path.GetDirectoryName(destinationPath);
                     Directory.CreateDirectory(directoryToEnsure);
 
-                    // TODO: Abstract this to not take a hard dependency. 
+                    // TODO: Abstract this to not take a hard dependency.
                     System.IO.File.Copy(sourcePath, destinationPath, overwrite: true);
                 }
             }
@@ -113,7 +113,7 @@ namespace Dedupe.Core
 
             // TODO: Refactor this to not take a hard dependency.
             var file = new Dedupe.Core.File(manifestFile);
-            
+
             using(var stream = await file.OpenReadAsync())
             using(var streamReader = new StreamReader(stream))
             {
@@ -122,21 +122,21 @@ namespace Dedupe.Core
                 serializer.Formatting = Formatting.Indented;
                 _fileHashes = (Dictionary<Guid, List<String>>)serializer.Deserialize(streamReader, typeof(Dictionary<Guid, List<String>>));
             }
-                            
+
             foreach (var fileHash in _fileHashes)
             {
                 var key = fileHash.Key;
                 var files = fileHash.Value;
-                
+
                 var source = Path.Combine(_source.FolderPath, files[0]);
                 for(var i = 1; i < files.Count; i++)
                 {
                     String targetAbsolutePath = Path.Combine(_source.FolderPath, files[i]);
                     String targetDirectoryPath = Path.GetDirectoryName(targetAbsolutePath);
                     Directory.CreateDirectory(targetDirectoryPath);
-                    System.IO.File.Copy(source, targetAbsolutePath, overwrite: true); 
+                    System.IO.File.Copy(source, targetAbsolutePath, overwrite: true);
                 }
-            }       
+            }
         }
 
         private async Task<Guid> GetFileHashAsync(IFile file)
@@ -146,7 +146,7 @@ namespace Dedupe.Core
             {
                 hash = md5.ComputeHash(await file.OpenReadAsync());
             }
-            
+
             var str = ByteArrayToString(hash);
             var guid = Guid.Parse(str);
             return guid;
